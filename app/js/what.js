@@ -1,4 +1,4 @@
-import Another from './another.js';
+var Another = require('./another.js');
 
 var what = {
     something: () => {
@@ -6,4 +6,4 @@ var what = {
     }
 };
 
-export default what;
+module.exports = what;

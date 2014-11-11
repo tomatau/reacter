@@ -1,4 +1,4 @@
-import React from 'react';
+var React = require('react');
 
 var ExampleApp = React.createClass({
     render() {
@@ -8,4 +8,4 @@ var ExampleApp = React.createClass({
     }
 });
 
-export default ExampleApp;
+module.exports = ExampleApp;

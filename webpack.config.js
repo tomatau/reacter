@@ -1,23 +1,26 @@
-var webpack = require("webpack");
+var webpack = require('webpack');
+var path = require('path');
 
 const roots = {
-    base: __dirname + "/app",
-    bundle: __dirname + "/bundle",
+    base: path.join(__dirname, 'app'),
+    bundle: path.join(__dirname, 'bundle'),
 };
 
 const paths = {
-    js: roots.base + "/js"
+    js: path.join(roots.base, 'js'),
 };
 
 module.exports = {
     context: __dirname,
-    entry: paths.js + "/entry",
+    entry: path.join(paths.js, 'entry'),
+    devtool: 'source-map',
+    target: 'web',
 
     output: {
         path: roots.bundle,
-        publicPath: "/assets/",
-        filename: "app.bundle.js",
-        chunkFilename: "[hash].chunk.js"
+        publicPath: '/assets/', // messes up easily
+        filename: 'app.bundle.js',
+        chunkFilename: '[hash].chunk.js'
     },
     // externals: [{'react': 'React', 'jquery': '$'}],
 
@@ -25,9 +28,14 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.js$/, loaders: ["es6", "jsx?harmony"] }
-        ]
+            { test: /\.js$/, loaders: ['es6', 'jsx'] }
+        ],
+        noParse: /\.min\.js/
     },
 
-    plugins: [ new webpack.optimize.CommonsChunkPlugin("common.js") ]
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin('common.js'),
+        // new webpack.optimize.UglifyJsPlugin()
+        // new webpack.optimize.DedupePlugin()
+    ]
 }
