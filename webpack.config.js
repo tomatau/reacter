@@ -23,12 +23,15 @@ module.exports = {
         chunkFilename: '[hash].chunk.js'
     },
     // externals: [{'react': 'React', 'jquery': '$'}],
+    resolve: {
+        extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"],
+    },
 
     cache: true,
 
     module: {
         loaders: [
-            { test: /\.js$/, loaders: ['es6', 'jsx'] }
+            { test: /\.jsx$/, loaders: ['es6', 'jsx?harmony'] }
         ],
         noParse: /\.min\.js/
     },
