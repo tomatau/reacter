@@ -1,4 +1,4 @@
-var localVariable = 123;  // not visible outside this file
+var localVariable = 123;
 
 export default function Another(age) {
   this.age = age;
