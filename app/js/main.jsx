@@ -6,10 +6,11 @@ var Routes = Router.Routes;
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
 
-var Dashboard = React.createFactory(require("./dashboard/dash.view.jsx"));
+var Dashboard = require("./dashboard/dash.view.jsx");
 
 var App = React.createClass({
     render() {
+        console.log('render app')
         return (
             <div className="container">
                 <header>
@@ -22,9 +23,6 @@ var App = React.createClass({
         );
     }
 });
-
-// var App = React.createFactory(AppClass);
-
 
 React.render(
     <Routes location="history">

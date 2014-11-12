@@ -10,9 +10,16 @@ const paths = {
     js: path.join(roots.base, 'js'),
 };
 
+/*
+open http://localhost:8080/webpack-dev-server/
+ */
+
 module.exports = {
     context: __dirname,
-    entry: path.join(paths.js, 'entry'),
+    entry: [
+        'webpack/hot/dev-server',
+        path.join(paths.js, 'entry')
+    ],
     // devtool: 'source-map',
     target: 'web',
 
@@ -24,24 +31,26 @@ module.exports = {
     },
     // externals: [{'react': 'React', 'jquery': '$'}],
     resolve: {
-        extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"],
+        extensions: ["", ".js", ".jsx"],
     },
 
-    cache: true,
+    watch: true,
 
     module: {
         loaders: [
-            { test: /\.jsx$/, loaders: ['es6', 'jsx?harmony'] }
+            { test: /\.jsx$/, loaders: ['react-hot', 'es6', 'jsx?harmony'] }
         ],
         noParse: /\.min\.js/
     },
 
     devServer: {
         contentBase: "./app",
+        hot: true,
     },
 
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('common.js'),
+        new webpack.HotModuleReplacementPlugin()
         // new webpack.optimize.UglifyJsPlugin()
         // new webpack.optimize.DedupePlugin()
     ]
