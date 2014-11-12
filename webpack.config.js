@@ -13,7 +13,7 @@ const paths = {
 module.exports = {
     context: __dirname,
     entry: path.join(paths.js, 'entry'),
-    devtool: 'source-map',
+    // devtool: 'source-map',
     target: 'web',
 
     output: {
@@ -34,6 +34,10 @@ module.exports = {
             { test: /\.jsx$/, loaders: ['es6', 'jsx?harmony'] }
         ],
         noParse: /\.min\.js/
+    },
+
+    devServer: {
+        contentBase: "./app",
     },
 
     plugins: [
