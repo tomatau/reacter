@@ -16,7 +16,7 @@ var _getMockTodos = function(){
 
 var _todos = _getMockTodos();
 
-function addTodo(text){
+function _addTodo(text){
     _todos.push({
         id: uuid(),
         complete: false,
@@ -24,7 +24,7 @@ function addTodo(text){
     });
 }
 
-function removeTodo(id){
+function _removeTodo(id){
     _todos = _.reject(_todos, function(t){
         return (t.id === id);
     });
@@ -38,11 +38,14 @@ var TodoStore = flux.createStore(
 },
 function(payload){
     switch(payload.actionType){
-    case TodoConstants.ADD_TODO:
-        addTodo(payload.text);
-    break;
-    default:
-        return true;
+        case TodoConstants.TODO_CREATE:
+            _addTodo(payload.text);
+        break;
+        case TodoConstants.TODO_DESTROY:
+            _removeTodo(payload.id);
+        break;
+        default:
+            return true;
     }
     TodoStore.emitChange();
     return true;
