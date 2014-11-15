@@ -6,8 +6,8 @@ var Routes = Router.Routes;
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
 
-var Dashboard = require("./dashboard/dash.view.jsx");
-var TodoList = require("./todo/todoList.view.jsx");
+var Dashboard   = require("./dashboard/dash.view.jsx"),
+    TodoApp     = require("./todo/todoApp.view.jsx");
 
 var App = React.createClass({
     render() {
@@ -16,7 +16,7 @@ var App = React.createClass({
                 <header>
                     <ul>
                         <li><Link to="app">Dashboard</Link></li>
-                        <li><Link to="todos">TodoList</Link></li>
+                        <li><Link to="todos">TodoApp</Link></li>
                     </ul>
                 </header>
                 <this.props.activeRouteHandler/>
@@ -26,9 +26,9 @@ var App = React.createClass({
 });
 
 React.render(
-    <Routes location="history">
+    <Routes location="hash">
         <Route name="app" path="/" handler={App}>
-            <Route name="todos" handler={TodoList}/>
+            <Route name="todos" handler={TodoApp}/>
             <DefaultRoute handler={Dashboard}/>
         </Route>
     </Routes>,
