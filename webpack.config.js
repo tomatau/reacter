@@ -27,11 +27,14 @@ module.exports = {
         path: roots.bundle,
         publicPath: '/assets/', // messes up easily
         filename: 'app.bundle.js',
-        chunkFilename: '[hash].chunk.js'
+        chunkFilename: '[hash].chunk.js',
     },
     // externals: [{'react': 'React', 'jquery': '$'}],
     resolve: {
         extensions: ["", ".js", ".jsx"],
+        alias: {
+            // mcfly: 'mcfly/src/McFly'
+        }
     },
 
     watch: true,

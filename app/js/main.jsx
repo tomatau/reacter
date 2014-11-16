@@ -9,6 +9,12 @@ var Link = Router.Link;
 var Dashboard   = require("./dashboard/dash.view.jsx"),
     TodoApp     = require("./todo/todoApp.view.jsx");
 
+
+var Modal = require('react-modal');
+var appElem = document.body;
+Modal.setAppElement(appElem);
+Modal.injectCSS(appElem);
+
 var App = React.createClass({
     render() {
         return (
