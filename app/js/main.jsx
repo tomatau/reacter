@@ -1,3 +1,7 @@
+require('reset.less');
+require('./main.less');
+require('./main2.less');
+
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -13,9 +17,6 @@ var Modal = require('react-modal');
 var appElem = document.body;
 Modal.setAppElement(appElem);
 Modal.injectCSS(appElem);
-
-require('./main.less');
-require('./main2.less');
 
 var App = React.createClass({
     render() {
