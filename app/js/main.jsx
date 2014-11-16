@@ -9,17 +9,19 @@ var Link = Router.Link;
 var Dashboard   = require("./dashboard/dash.view.jsx"),
     TodoApp     = require("./todo/todoApp.view.jsx");
 
-
 var Modal = require('react-modal');
 var appElem = document.body;
 Modal.setAppElement(appElem);
 Modal.injectCSS(appElem);
 
+require('./main.less');
+require('./main2.less');
+
 var App = React.createClass({
     render() {
         return (
             <div className="container">
-                <header>
+                <header className="masthead">
                     <ul>
                         <li><Link to="app">Dashboard</Link></li>
                         <li><Link to="todos">TodoApp</Link></li>

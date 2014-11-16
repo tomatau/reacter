@@ -18,7 +18,7 @@ module.exports = {
     context: __dirname,
     entry: [
         'webpack/hot/dev-server',
-        path.join(paths.js, 'entry')
+        path.join(paths.js, 'main')
     ],
     // devtool: 'source-map',
     target: 'web',
@@ -32,6 +32,7 @@ module.exports = {
     // externals: [{'react': 'React', 'jquery': '$'}],
     resolve: {
         extensions: ["", ".js", ".jsx"],
+        modulesDirectories: ["node_modules", "js/css-common"],
         alias: {
             // mcfly: 'mcfly/src/McFly'
         }
@@ -41,6 +42,7 @@ module.exports = {
 
     module: {
         loaders: [
+            { test: /\.less$/, loader: "style-loader!css-loader!less-loader" },
             { test: /\.jsx$/, loaders: ['react-hot', 'es6', 'jsx?harmony'] }
         ],
         noParse: /\.min\.js/
@@ -52,8 +54,8 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common.js'),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.CommonsChunkPlugin('common.js')
         // new webpack.optimize.UglifyJsPlugin()
         // new webpack.optimize.DedupePlugin()
     ]
